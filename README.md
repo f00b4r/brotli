@@ -44,5 +44,5 @@ This package is currently maintained by these authors.
 
 -----
 
-Consider to [support](https://contributte.org/partners.html) **dockette** development team.
+Consider to [support](https://contributte.org/partners.html) **pwnlabs** development team.
 Also thank you for using this package.
