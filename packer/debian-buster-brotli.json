@@ -1,6 +1,6 @@
 {
   "variables": {
-    "nginx": "1.17.7"
+    "nginx": "1.18.0"
   },
   "builders": [
     {
