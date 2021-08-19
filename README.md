@@ -15,7 +15,7 @@
 ```Dockerfile
 FROM dockette/debian:buster
 
-ENV NGINX_VERSION=1.20.0
+ENV NGINX_VERSION=1.20.1
 ENV NGINX_MODULES=/usr/lib/nginx/modules
 
 RUN apt update
