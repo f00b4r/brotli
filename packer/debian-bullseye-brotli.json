@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "nginx": "1.20.2"
+  },
+  "builders": [
+    {
+      "type": "docker",
+      "image": "pwnlabs/brotli:bullseye",
+      "discard": true,
+      "pull": false
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/mkbrotli.sh",
+      "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }} {{user `nginx`}}"
+    },
+    {
+      "type": "file",
+      "source": "/srv/ngx_http_brotli_filter_module.so",
+      "destination": "dist/debian-bullseye-{{user `nginx`}}-ngx_http_brotli_filter_module.so",
+      "direction": "download"
+    },
+    {
+      "type": "file",
+      "source": "/srv/ngx_http_brotli_static_module.so",
+      "destination": "dist/debian-bullseye-{{user `nginx`}}-ngx_http_brotli_static_module.so",
+      "direction": "download"
+    }
+  ]
+}
