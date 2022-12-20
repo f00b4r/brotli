@@ -1,13 +1,25 @@
-.PHONY: build build-base
+DOCKER_BUILDKIT ?= 1
+NGINX ?= 1.22.1
 
-build-buster:
-	packer build packer/debian-buster-brotli.json
+.PHONY: build
+build: build-buster build-bullseye
 
-build-buster-base:
-	packer build packer/debian-buster.json
-
+.PHONY: build-bullseye
 build-bullseye:
-	packer build packer/debian-bullseye-brotli.json
+	docker build \
+		--target export \
+		--build-arg DEBIAN=bullseye \
+		--build-arg NGINX=${NGINX} \
+		--tag f00b4r/brotli:bullseye \
+		. \
+		--output dist
 
-build-bullseye-base:
-	packer build packer/debian-bullseye.json
+.PHONY: build-buster
+build-buster:
+	docker build \
+		--target export \
+		--build-arg DEBIAN=buster \
+		--build-arg NGINX=${NGINX} \
+		--tag f00b4r/brotli:buster \
+		. \
+		--output dist
