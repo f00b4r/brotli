@@ -15,20 +15,19 @@
 ```Dockerfile
 FROM dockette/debian:buster
 
-ENV NGINX_VERSION=1.20.1
+ENV NGINX_VERSION=1.23.2
 ENV NGINX_MODULES=/usr/lib/nginx/modules
 
 RUN apt update
 RUN apt install -y nginx curl
-RUN curl -L https://github.com/pwnlabs/brotli/releases/download/201912/debian-buster-${NGINX_VERSION}-ngx_http_brotli_filter_module.so -o ${NGINX_MODULES}/ngx_http_brotli_filter_module.so &&
+RUN curl -L https://github.com/f00b4r/brotli/releases/download/latest/debian-buster-${NGINX_VERSION}-ngx_http_brotli_filter_module.so -o ${NGINX_MODULES}/ngx_http_brotli_filter_module.so &&
 ```
 
 ## Build
 
-This repo using tool [Packer](https://www.packer.io/).
+This repo using tool [Docker](https://docs.docker.com/get-docker/).
 
 ```
-make build-base
 make build
 ```
 
